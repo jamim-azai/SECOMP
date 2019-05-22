@@ -1,0 +1,37 @@
+/*Sobre a pasta php: toda a parte de consultas e conexao ao banco está aqui
+ *
+ * Sobre a pasta class. São arquivos php de classes.
+ *
+ * Classe conexão: sua unica função é retornar um Php Data Object pelo método get.
+ * Ela não será instanciada.
+ *
+ * Classes Pessoa e Pessoa_Atividade: representam as entidades inscricao e atv_insc do
+ * banco de dados, respectivamente. Sua função é inserir os dados já prontos no banco
+ * de dados, usando PDO e Statement; (funcoes de inserção);
+ * Nessas classes, são inseridos os dados da inscricao e as relacoes de inscricao
+ * para atividade.
+ *
+ * Classes Inscricao e Atividade: após uma consulta de inscrição, os dados são colodados
+ * desntro de objetos. Os dados pessoais do inscrito são colocados no objeto inscricao e
+ * para cada atividade em que o inscrito está envolvido, é criado um objeto atividade. Por
+ * fim, os objetos atividade são postos no atributo atividades do objeto inscricao, que
+ * é um array. A página de exibicao de consulta deve usar este objeto;
+ *
+ * autoload: carrega automaticamente as classes da pasta class, sem a necessidade de requires
+ *
+ * funcoes.php: dentro deste arquivo estão as funcoes relacionadas ao banco, como inserir
+ * e consultar. Funciona assim:
+ *      cadastrar: o arquivo funcao recebe a matricula, telefone e email pelo post. Verifica se
+ *               a pessoa está vinculada ou se já possui cadastro. Por fim, manda dos dados
+ *               para o objeto Pessoa e Pessoa_Atividade (inscricao_atividade);
+ *
+ *      consultar: recebe a matricula. Caso haja uma inscrição correspondente, ele
+ *                 instancia um objeto inscrição e coloca nele os dados do select feito no
+ *                 banco.
+ *
+ * master.php: é de onde as funcoes são chamadas e é a única conexão direta entre o front end
+ * e o back end. Não é possível entrar diretamente neste arquivo, já que para isso, o post
+ * matricula deve estar setado. O arquivo master recebe uma variavel op pelo get, a qual
+ * deve ser 1 para inserção e 2 para consulta;
+ *
+ * */
